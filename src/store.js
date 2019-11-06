@@ -1,8 +1,8 @@
 const camelCase = require('lodash/camelCase')
-const { resolveHttpErro } = require('./axios')
+const { resolverErroHttp } = require('./axios')
 
 /**
- * Função para autoregistrar os módulos do store.
+ * Método para autoregistrar os módulos do store.
  * Não é necessário informar o namespaced
  */
 const registrarModulos = () => {
@@ -41,7 +41,7 @@ const registrarModulos = () => {
 const setState = property => (state, payload) => (state[property] = payload)
 
 /**
- * Função para efetuar o http.get no backend com opções de filtro e paginação
+ * Metodo para efetuar o http.get no backend com opções de filtro e paginação
  * PS: Utilizar somente em STORE
  * @param {*} http -> instancia do axios
  * @param {*} url -> url do endpoint
@@ -56,7 +56,7 @@ const carregar = (http, url, mutation = '', permitePaginacao = false, filtraFili
       filtro['filial'] = filial
     }
 
-    const { data } = await http.get(url, { params: filtro }).catch(err => resolveHttpErro(err))
+    const { data } = await http.get(url, { params: filtro }).catch(err => resolverErroHttp(err))
 
     if (mutation !== '') {
       commit(mutation, data)
@@ -78,7 +78,7 @@ const carregar = (http, url, mutation = '', permitePaginacao = false, filtraFili
 const carregarPorChave = (http, url) =>
   async (context, key) => {
     const urlKey = `${url}${key}/`
-    const { data } = await http.get(urlKey).catch(err => resolveHttpErro(err))
+    const { data } = await http.get(urlKey).catch(err => resolverErroHttp(err))
     return data
   }
 
@@ -99,9 +99,9 @@ const salvar = (http, url, pk = 'id', salvaFilial = false) =>
     }
     if (form[pk]) {
       const urlPk = `${url}${form[pk]}/`
-      return http.patch(urlPk, form).catch(err => resolveHttpErro(err))
+      return http.patch(urlPk, form).catch(err => resolverErroHttp(err))
     }
-    return http.post(url, form).catch(err => resolveHttpErro(err))
+    return http.post(url, form).catch(err => resolverErroHttp(err))
   }
 
 /**
@@ -111,7 +111,7 @@ const salvar = (http, url, pk = 'id', salvaFilial = false) =>
  * @param {*} url -> url do endpoint
  */
 const apagar = (http, url) => (context, id) =>
-  http.delete(`${url}${id}/`).catch(err => resolveHttpErro(err))
+  http.delete(`${url}${id}/`).catch(err => resolverErroHttp(err))
 
 module.exports = {
   setState,

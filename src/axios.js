@@ -12,7 +12,7 @@ const adicionaToken = (http, token = null) => {
 /**
  * Resolve os erros para listar a mensagem que veio do backend
  */
-const resolveHttpErro = error => {
+const resolverErroHttp = error => {
   if (error.response) {
     if (error.response.status === 400 || error.response.status === 404 || error.response.status === 500) {
       const data = error.response.data
@@ -35,5 +35,5 @@ const resolveHttpErro = error => {
 
 module.exports = {
   adicionaToken,
-  resolveHttpErro
+  resolverErroHttp
 }

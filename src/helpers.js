@@ -1,5 +1,5 @@
 /**
- * Função para retornar data atual no formato YYYY-MM-DD (Fuso horário -4)
+ * Metodo para retornar data atual no formato YYYY-MM-DD (Fuso horário -4)
  */
 const dataHoje = () => {
   const nowDate = new Date()

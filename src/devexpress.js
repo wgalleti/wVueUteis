@@ -1,5 +1,5 @@
 const CustomStore = require('devextreme/data/custom_store')
-const { resolveHttpErro } = './axios'
+const { resolverErroHttp } = './axios'
 
 /**
  * Metodo para carregar os dados
@@ -31,7 +31,7 @@ const carregar = async (http, url, filtros = {}, instanciaVue, operacoesRemotas 
       totalCount: data.length
     }
   } catch (err) {
-    return resolveHttpErro(err)
+    return resolverErroHttp(err)
   }
 }
 
@@ -46,7 +46,7 @@ const inserir = async (http, url, dados) => {
     const resp = await http.post(url, dados)
     return resp
   } catch (err) {
-    return resolveHttpErro(err)
+    return resolverErroHttp(err)
   }
 }
 
@@ -63,7 +63,7 @@ const atualizar = async (http, url, chave, dados) => {
     const resp = await http.patch(updateUrl, dados)
     return resp
   } catch (err) {
-    return resolveHttpErro(err)
+    return resolverErroHttp(err)
   }
 }
 
@@ -79,7 +79,7 @@ const apagar = async (http, url, chave) => {
     const resp = await http.delete(deleteUrl, {})
     return resp
   } catch (err) {
-    return resolveHttpErro(err)
+    return resolverErroHttp(err)
   }
 }
 
@@ -102,6 +102,18 @@ const criarCustomStore = (http, instanciaVue, url, campoChave = 'id', operacoesR
   })
 }
 
+/**
+ * Metodo para retornar um DataSource paginado de um DxLookup
+ * @param {*} dados -> array de dados a mostrar no componente
+ */
+const montaLookupDataSource = (dados = []) => options => {
+  return {
+    store: dados,
+    paginate: true
+  }
+}
+
 module.exports = {
-  criarCustomStore
+  criarCustomStore,
+  montaLookupDataSource
 }
