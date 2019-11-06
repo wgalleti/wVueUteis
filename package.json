@@ -1,8 +1,11 @@
 {
   "name": "wvueuteis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Helpers para construção de projetos Vuejs",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "bin": {
+    "wvueuteis": "./dist/index.js"
+  },
   "scripts": {
     "dev": "nodemon ./dist/index.js"
   },
