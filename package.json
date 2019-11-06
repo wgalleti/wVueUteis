@@ -4,7 +4,7 @@
   "description": "Helpers para construção de projetos Vuejs",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./dist/index.js"
   },
   "repository": {
     "type": "git",
