@@ -1,6 +1,6 @@
 {
   "name": "wvueuteis",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helpers para construção de projetos Vuejs",
   "main": "dist/index.js",
   "scripts": {

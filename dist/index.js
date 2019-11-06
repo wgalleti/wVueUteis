@@ -4,8 +4,8 @@ const axios = require('../src/axios.js')
 const helpers = require('../src/helpers.js')
 
 module.export = {
-  store,
-  devexpress,
-  axios,
-  helpers
+  store: store,
+  devexpress: devexpress,
+  axios: axios,
+  helpers: helpers
 }
